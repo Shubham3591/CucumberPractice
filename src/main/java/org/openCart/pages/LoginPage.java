@@ -29,6 +29,10 @@ public class LoginPage {
     @FindBy(linkText = "Logout")
     public WebElement logoutLinkLocator;
 
+    @FindBy(linkText = "Forgotten Password")
+    public WebElement forgottenPasswordLinkLocator;
+
+
     // Constructor
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -36,17 +40,32 @@ public class LoginPage {
 
     // Methods
     public void doLogin(String username, String password) {
-            //myAccount.click();
-            //myAccountLogin.click();
-            userNameField.sendKeys(username);
-            passwordField.sendKeys(password);
-        }
+        //myAccount.click();
+        //myAccountLogin.click();
+        userNameField.sendKeys(username);
+        passwordField.sendKeys(password);
+    }
 
-        public void clickOnLoginButton(){
-            loginButton.click();
-        }
+    public void clickOnLoginButton() {
+        loginButton.click();
+    }
 
-    public boolean checkLogoutLink(){
+    public boolean checkLogoutLink() {
         return (logoutLinkLocator).isDisplayed();
     }
+
+    public boolean checkForgotPwdLink() {
+        return (forgottenPasswordLinkLocator).isDisplayed();
     }
+
+    public void clickForgottenPasswordLink() {
+        forgottenPasswordLinkLocator.click();
+    }
+
+    public String getForgotPwdPageUrl() throws InterruptedException {
+        String forgotPwdPageUrl = driver.getCurrentUrl();
+        Thread.sleep(3000);
+        System.out.println(forgotPwdPageUrl);
+        return forgotPwdPageUrl;
+    }
+}
